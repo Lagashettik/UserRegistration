@@ -1,2 +1,4 @@
 /.idea
 UserRegistration.iml
+/src/..
+*.class
