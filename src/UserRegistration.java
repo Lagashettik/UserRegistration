@@ -3,9 +3,18 @@ import java.util.regex.*;
 
 public class UserRegistration {
     String RegexFirstLastName = "^[A-Z]{1}[a-z]{2}[a-z]*";  //For First and Last Name Regex is same
-    String RegexEmail = "^([a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
+    String RegexEmail = "^[a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
+    String RegexMobileFormat ="^(\\d{2}[ ]{1})[6-9]{1}[0-9]{9}$" ;
 
-    Boolean CheckPattern(String Pat, String Details){
+    static int choice;
+    static Scanner scan = new Scanner(System.in);
+
+    Boolean CheckPattern(String Pat){
+
+        String Details;
+        Details = scan.next();
+        if(choice == 4)
+            Details=Details+" "+scan.next();
 
         Pattern pat = Pattern.compile(Pat);
         Matcher match = pat.matcher(Details);
@@ -15,39 +24,53 @@ public class UserRegistration {
     }
 
     void Choice(UserRegistration User) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email");
+
+        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email\n4 : Mobile Number");
         System.out.println("Enter your choice");
-        int choice = scan.nextInt();
+        choice = scan.nextInt();
         System.out.println("Enter Details");
-        String Details = scan.next();
-        boolean check;
+
         switch (choice) {
-            case 1 -> {
-                check = CheckPattern(User.RegexFirstLastName, Details);
-                if (check)
-                    System.out.println("First Name is Valid");
-                else
-                    System.out.println("First Name is Invalid");
-            }
-            case 2 -> {
-                check = CheckPattern(User.RegexFirstLastName, Details);
-                if (check)
-                    System.out.println("Last Name is Valid");
-                else
-                    System.out.println("Last Name is Invalid");
-            }
-            case 3 -> {
-                check = CheckPattern(User.RegexEmail, Details);
-                if (check)
-                    System.out.println("Email is Valid");
-                else
-                    System.out.println("Email is Invalid");
-            }
+            case 1 -> Firstname(User);
+            case 2 -> Lastname(User);
+            case 3 -> Email(User);
+            case 4 -> MobileFormat(User);
             default -> System.out.println("exit");
         }
-
     }
+
+    void Firstname(UserRegistration User){
+        boolean check = CheckPattern(User.RegexFirstLastName);
+        if (check)
+            System.out.println("First Name is Valid");
+        else
+            System.out.println("First Name is Invalid");
+    }
+
+    void Lastname(UserRegistration User){
+        boolean check = CheckPattern(User.RegexFirstLastName);
+        if (check)
+            System.out.println("Last Name is Valid");
+        else
+            System.out.println("Last Name is Invalid");
+    }
+
+    void Email(UserRegistration User){
+        boolean check = CheckPattern(User.RegexEmail);
+        if (check)
+            System.out.println("Email is Valid");
+        else
+            System.out.println("Email is Invalid");
+    }
+
+    void MobileFormat(UserRegistration User){
+        boolean check = CheckPattern(User.RegexMobileFormat);
+        if (check)
+            System.out.println("Mobile Number is Valid");
+        else
+            System.out.println("Mobile Number is Invalid");
+    }
+
     public static void main(String[] args) {
         UserRegistration User = new UserRegistration();
         User.Choice(User);
