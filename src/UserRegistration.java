@@ -4,7 +4,8 @@ import java.util.regex.*;
 public class UserRegistration {
     String RegexFirstLastName = "^[A-Z]{1}[a-z]{2}[a-z]*";  //For First and Last Name Regex is same
     String RegexEmail = "^[a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
-    String RegexMobileFormat ="^(\\d{2}[ ]{1})[6-9]{1}[0-9]{9}$" ;
+    String RegexMobileFormat ="^(\\d{2}[ ]{1})[6-9]{1}[0-9]{9}$";
+    String RegexPassword = "^([A-Za-z0-9]{8})[A-Za-z0-9]*";
 
     static int choice;
     static Scanner scan = new Scanner(System.in);
@@ -25,7 +26,7 @@ public class UserRegistration {
 
     void Choice(UserRegistration User) {
 
-        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email\n4 : Mobile Number");
+        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email\n4 : Mobile Number\n5 : Password");
         System.out.println("Enter your choice");
         choice = scan.nextInt();
         System.out.println("Enter Details");
@@ -35,6 +36,7 @@ public class UserRegistration {
             case 2 -> Lastname(User);
             case 3 -> Email(User);
             case 4 -> MobileFormat(User);
+            case 5 -> Password(User);
             default -> System.out.println("exit");
         }
     }
@@ -69,6 +71,14 @@ public class UserRegistration {
             System.out.println("Mobile Number is Valid");
         else
             System.out.println("Mobile Number is Invalid");
+    }
+
+    void Password(UserRegistration User){
+        boolean check = CheckPattern(User.RegexPassword);
+        if (check)
+            System.out.println("Password is Valid");
+        else
+            System.out.println("Password is Invalid");
     }
 
     public static void main(String[] args) {
