@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 import java.util.regex.*;
 
@@ -5,7 +7,7 @@ public class UserRegistration {
     String RegexFirstLastName = "^[A-Z]{1}[a-z]{2}[a-z]*";  //For First and Last Name Regex is same
     String RegexEmail = "^[a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
     String RegexMobileFormat ="^(\\d{2}[ ]{1})[6-9]{1}[0-9]{9}$";
-    String RegexPassword = "^(?=.*[A-Z])([A-za-z0-9]).{8,}$";
+    String RegexPassword = "^(?=.*[A-Z])(?=.*[0-9])([A-za-z0-9]).{8,}$";
 
     static int choice;
     static Scanner scan = new Scanner(System.in);
@@ -41,7 +43,7 @@ public class UserRegistration {
         }
     }
 
-    void Firstname(UserRegistration User){
+    void Firstname(@NotNull UserRegistration User){
         boolean check = CheckPattern(User.RegexFirstLastName);
         if (check)
             System.out.println("First Name is Valid");
