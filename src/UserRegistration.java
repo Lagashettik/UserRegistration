@@ -5,16 +5,16 @@ import java.util.regex.*;
 
 public class UserRegistration {
     String RegexFirstLastName = "^[A-Z]{1}[a-z]{2}[a-z]*";  //For First and Last Name Regex is same
-    String RegexEmail = "^[a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
+    String RegexEmail = "^([a-zA-Z0-9]*[+._-]*[a-zA-Z0-9]+@[a-zA-Z]+.{3}[a-zA-z.]*[a-zA-z]{2})+$";
     String RegexMobileFormat ="^(\\d{2}[ ]{1})[6-9]{1}[0-9]{9}$";
     String RegexPassword = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]{1})([A-za-z0-9]).{8,}$";
 
     static int choice;
+    static String Details = " ";
     static Scanner scan = new Scanner(System.in);
 
     Boolean CheckPattern(String Pat){
 
-        String Details;
         Details = scan.next();
         if(choice == 4)
             Details=Details+" "+scan.next();
@@ -28,7 +28,7 @@ public class UserRegistration {
 
     void Choice(UserRegistration User) {
 
-        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email\n4 : Mobile Number\n5 : Password");
+        System.out.println("1 : Firstname\n2 : Lastname\n3 : Email\n4 : Mobile Number\n5 : Password\n6 : Clear Email");
         System.out.println("Enter your choice");
         choice = scan.nextInt();
         System.out.println("Enter Details");
@@ -39,6 +39,7 @@ public class UserRegistration {
             case 3 -> Email(User);
             case 4 -> MobileFormat(User);
             case 5 -> Password(User);
+            case 6 -> ClearEmail();
             default -> System.out.println("exit");
         }
     }
@@ -81,6 +82,23 @@ public class UserRegistration {
             System.out.println("Password is Valid");
         else
             System.out.println("Password is Invalid");
+    }
+
+    void ClearEmail(){
+        if(Details != " ") {
+            if (CheckEmail(Details))
+                Details = null;
+        }
+        else
+            System.out.println("Email is empty");
+    }
+
+    boolean CheckEmail(String Email){
+        Pattern pat = Pattern.compile(RegexEmail);
+        Matcher match = pat.matcher(Email);
+        boolean result;
+        result = match.matches();
+        return result;
     }
 
     public static void main(String[] args) {
