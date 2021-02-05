@@ -1,5 +1,5 @@
 /.idea
 UserRegistration.iml
-/src/..
-/Test/..
+/src/com/user/registration/..
+/Test/com/user/registration/..
 *.class
