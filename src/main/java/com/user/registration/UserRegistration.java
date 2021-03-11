@@ -1,7 +1,5 @@
 package com.user.registration;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 import java.util.regex.*;
 
@@ -47,7 +45,7 @@ public class UserRegistration {
         }
     }
 
-    void Firstname(@NotNull UserRegistration User) {
+    void Firstname( UserRegistration User) {
         boolean check = CheckPattern(User.RegexFirstLastName);
         if (check)
             System.out.println("First Name is Valid");

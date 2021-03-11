@@ -1,5 +1,11 @@
 /.idea
 UserRegistration.iml
-/src/com/user/registration/..
-/Test/com/user/registration/..
+/src/main/java/com/user/registration/..
+/src/test/java/com/user/registration/..
 *.class
+build.gradle
+gradlew.bat
+gradlew
+settings.gradle
+/.gradle
+/gradle
